@@ -8,7 +8,10 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+import frc.robot.Constants;
+import com.revrobotics.MotorFeedbackSensor;
+import com.revrobotics.CANSparkMax.IdleMode;
+import 
 
 
 
@@ -21,10 +24,9 @@ public class DriveTrain extends SubsystemBase {
     private final CANSparkMax m_rightMotor3;
     private final CANSparkMax m_leftMotor2;
     private final CANSparkMax m_leftMotor3;
-    
     private final DifferentialDrive drive;
     
-    private final NeutralMode neutralMode = NeutralMode.Brake;
+    private final IdleMode IdleMode = IdleMode.kBrake;
     private double rampRate = 0.15;
     
     public DriveTrain() {
@@ -36,26 +38,18 @@ public class DriveTrain extends SubsystemBase {
       leftMaster = new CANSparkMax(1, MotorType.kBrushless);
       m_leftMotor2 = new CANSparkMax(2, MotorType.kBrushless);
       m_leftMotor3 = new CANSparkMax(3, MotorType.kBrushless);
-
-      // NEOs Factory Reset
-
-      rightMaster.configFactoryDefault();
-      m_rightMotor2.configFactoryDefault();
-      m_rightMotor3.configFactoryDefault();
-
-      leftMaster.configFactoryDefault();
-      m_leftMotor3.configFactoryDefault();
-      m_leftMotor3.configFactoryDefault();
       
       // Motor Break/Coast
       
-      rightMaster.setNeutralMode(neutralMode);
-		m_rightMotor2.setNeutralMode(neutralMode);
-		m_rightMotor3.setNeutralMode(neutralMode);
+      rightMaster.setIdleMode(IdleMode);
+		m_rightMotor2.setIdleMode(IdleMode);
+		m_rightMotor3.setIdleMode(IdleMode);
 
-		leftMaster.setNeutralMode(neutralMode);
-		m_leftMotor2.setNeutralMode(neutralMode);
-		m_leftMotor3.setNeutralMode(neutralMode);
+		leftMaster.setIdleMode(IdleMode);
+		m_leftMotor2.setIdleMode(IdleMode);
+		m_leftMotor3.setIdleMode(IdleMode);
+
+
     }
 
 }
